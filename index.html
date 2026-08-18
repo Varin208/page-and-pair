@@ -11,7 +11,7 @@
   <!-- ===================== HEADER / NAVIGATION ===================== -->
   <header class="site-header">
     <a href="#home" class="logo">
-      <img src="book-covers/logo.png" alt="Page & Pair logo" class="logo-image">
+      <img src="images/logo.png" alt="Page & Pair logo" class="logo-image">
     </a>
     <nav class="main-nav">
       <ul>
@@ -37,7 +37,7 @@
   <!-- ===================== QUESTIONNAIRE SECTION ===================== -->
   <section class="questionnaire" id="discover">
 
-    <!-- STAGE 1: GENRE (single choice, so radio buttons instead of checkboxes) -->
+    <!-- STAGE 1: GENRE (single choice) -->
     <div class="question-stage" id="stage-genre">
       <h2 class="question-heading">What are you in the mood for?</h2>
       <div class="options-group" id="genre-options">
@@ -60,10 +60,10 @@
       </div>
     </div>
 
-    <!-- STAGE 2: TROPES (multiple choice) — grouped into readable clusters
-         since the full collection covers 97 unique tropes. Every trope
-         from books.json is included below; the grouping is just for
-         scanability and doesn't affect how script.js reads the values. -->
+    <!-- STAGE 2: TROPES (multiple choice) — grouped into readable clusters.
+         Every trope from the cleaned books.json is included below (81
+         unique tropes); the grouping is just for scanability and doesn't
+         affect how script.js reads the values. -->
     <div class="question-stage" id="stage-tropes">
       <h2 class="question-heading">What kind of story pulls you in?</h2>
 
@@ -74,8 +74,6 @@
         <label class="option-choice"><input type="checkbox" name="trope" value="Slow Burn Romance">Slow Burn Romance</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Forced Proximity">Forced Proximity</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Forbidden Romance">Forbidden Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Forbidden Love">Forbidden Love</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Rivals to Lovers">Rivals to Lovers</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Opposites Attract">Opposites Attract</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Fake Dating">Fake Dating</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Grumpy Sunshine">Grumpy Sunshine</label>
@@ -96,16 +94,12 @@
         <label class="option-choice"><input type="checkbox" name="trope" value="Love Story Within a Story">Love Story Within a Story</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Best Friends">Best Friends</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Boy Next Door">Boy Next Door</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Women in STEM">Women in STEM</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Single Parent">Single Parent</label>
       </div>
 
       <h3 class="trope-group-label">Fantasy & magic</h3>
       <div class="options-group" id="trope-options-fantasy">
         <label class="option-choice"><input type="checkbox" name="trope" value="Magic">Magic</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Magical Games">Magical Games</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Fae">Fae</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Fae Court">Fae Court</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Dragon Riders">Dragon Riders</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Dragon Shifters">Dragon Shifters</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Vampires">Vampires</label>
@@ -113,23 +107,19 @@
         <label class="option-choice"><input type="checkbox" name="trope" value="Curses">Curses</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Prophecy">Prophecy</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Fairy Tale Setting">Fairy Tale Setting</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Chosen One">Chosen One</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Supernatural Powers">Supernatural Powers</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Secret Powers">Secret Powers</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Immersive World Building">Immersive World Building</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Unreliable Reality">Unreliable Reality</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Dark Fantasy">Dark Fantasy</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Historical Inspiration">Historical Inspiration</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="War">War</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Military Academy">Military Academy</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Deadly Competition">Deadly Competition</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Deadly Trials">Deadly Trials</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="High Stakes">High Stakes</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Royalty">Royalty</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Rebellion">Rebellion</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Secret Rebellion">Secret Rebellion</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Revenge">Revenge</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Assassin">Assassin</label>
+        <label class="option-choice"><input type="checkbox" name="trope" value="Special Abilities">Special Abilities</label>
       </div>
 
       <h3 class="trope-group-label">Mystery & intrigue</h3>
@@ -141,13 +131,9 @@
         <label class="option-choice"><input type="checkbox" name="trope" value="Mysterious Inheritance">Mysterious Inheritance</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Twist Ending">Twist Ending</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Secrets">Secrets</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Family Secrets">Family Secrets</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Small Town Secrets">Small Town Secrets</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Hidden Secrets">Hidden Secrets</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Hidden Identity">Hidden Identity</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Hidden Motives">Hidden Motives</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Secret Identity">Secret Identity</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Secret Identities">Secret Identities</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Unreliable Narrator">Unreliable Narrator</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Psychological Manipulation">Psychological Manipulation</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Memory Loss">Memory Loss</label>
@@ -158,12 +144,10 @@
         <label class="option-choice"><input type="checkbox" name="trope" value="Multiple Suspects">Multiple Suspects</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Multiple POV">Multiple POV</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Amateur Detective">Amateur Detective</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Teen Detective">Teen Detective</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Teen Detectives">Teen Detectives</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Cold Case">Cold Case</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Crime Investigation">Crime Investigation</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Serial Killer Investigation">Serial Killer Investigation</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Special Abilities">Special Abilities</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Puzzles">Puzzles</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Riddles">Riddles</label>
         <label class="option-choice"><input type="checkbox" name="trope" value="Wealthy Family">Wealthy Family</label>

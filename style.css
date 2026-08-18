@@ -279,7 +279,7 @@ input:focus-visible {
 }
 
 /* Small label above each cluster of tropes (e.g. "Fantasy & magic").
-   Kept quiet on purpose — it organizes the 97 tropes without competing
+   Kept quiet on purpose — it organizes the 81 tropes without competing
    with the main question heading above it. */
 .trope-group-label {
   font-family: var(--font-ui);

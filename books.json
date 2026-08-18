@@ -5,14 +5,17 @@
     "author": "Sarah J. Maas",
     "category": "Fantasy",
     "cover": "book-covers/Throne_of_Glass.jpg",
-    "genres": ["High Fantasy", "Epic Fantasy", "Young Adult"],
+    "genres": [
+      "High Fantasy",
+      "Epic Fantasy",
+      "Young Adult"
+    ],
     "tropes": [
       "Strong Female Protagonist",
       "Found Family",
       "Political Intrigue",
       "Magic",
       "Assassin",
-      "Chosen One",
       "Slow Burn Romance"
     ],
     "moods": [
@@ -28,7 +31,11 @@
     "author": "Leigh Bardugo",
     "category": "Fantasy",
     "cover": "book-covers/Six_of_Crows.jpeg",
-    "genres": ["High Fantasy", "Young Adult", "Fantasy Heist"],
+    "genres": [
+      "High Fantasy",
+      "Young Adult",
+      "Fantasy Heist"
+    ],
     "tropes": [
       "Found Family",
       "Heist",
@@ -51,12 +58,16 @@
     "author": "Rebecca Yarros",
     "category": "Fantasy",
     "cover": "book-covers/Fourth_Wing.jpeg",
-    "genres": ["Romantasy", "High Fantasy", "New Adult"],
+    "genres": [
+      "Romantasy",
+      "High Fantasy",
+      "New Adult"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Dragon Riders",
       "Military Academy",
-      "Deadly Competition",
+      "Deadly Trials",
       "Forced Proximity",
       "Found Family",
       "Slow Burn Romance"
@@ -74,7 +85,11 @@
     "author": "Sarah J. Maas",
     "category": "Fantasy",
     "cover": "book-covers/Acotar.jpg",
-    "genres": ["High Fantasy", "Romantasy", "Young Adult"],
+    "genres": [
+      "High Fantasy",
+      "Romantasy",
+      "Young Adult"
+    ],
     "tropes": [
       "Fae",
       "Strong Female Protagonist",
@@ -97,7 +112,11 @@
     "author": "Sarah J. Maas",
     "category": "Fantasy",
     "cover": "book-covers/CC.jpg",
-    "genres": ["Urban Fantasy", "Romantasy", "New Adult"],
+    "genres": [
+      "Urban Fantasy",
+      "Romantasy",
+      "New Adult"
+    ],
     "tropes": [
       "Found Family",
       "Enemies to Lovers",
@@ -120,13 +139,17 @@
     "author": "Tahereh Mafi",
     "category": "Fantasy",
     "cover": "book-covers/Shatter_Me.jpg",
-    "genres": ["Dystopian", "Young Adult", "Fantasy"],
+    "genres": [
+      "Dystopian",
+      "Young Adult",
+      "Fantasy"
+    ],
     "tropes": [
       "Strong Female Protagonist",
       "Enemies to Lovers",
       "Love Triangle",
       "Rebellion",
-      "Supernatural Powers",
+      "Special Abilities",
       "Found Family",
       "Morally Gray Characters"
     ],
@@ -143,14 +166,17 @@
     "author": "Marion Blackwood",
     "category": "Fantasy",
     "cover": "book-covers/Flame_Thorn.jpg",
-    "genres": ["Dark Fantasy", "Romantasy", "High Fantasy"],
+    "genres": [
+      "Dark Fantasy",
+      "Romantasy",
+      "High Fantasy"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Fae",
       "Dragon Shifters",
-      "Deadly Competition",
+      "Deadly Trials",
       "Political Intrigue",
-      "Secret Rebellion",
       "Forced Proximity"
     ],
     "moods": [
@@ -166,7 +192,11 @@
     "author": "Melissa K. Roehrich",
     "category": "Fantasy",
     "cover": "book-covers/Lady_of_Darkness.jpg",
-    "genres": ["Dark Fantasy", "Romantasy", "High Fantasy"],
+    "genres": [
+      "Dark Fantasy",
+      "Romantasy",
+      "High Fantasy"
+    ],
     "tropes": [
       "Strong Female Protagonist",
       "Assassin",
@@ -189,7 +219,11 @@
     "author": "Sarah A. Parker",
     "category": "Fantasy",
     "cover": "book-covers/Moon_Fall..jpg",
-    "genres": ["Romantasy", "High Fantasy", "Dark Fantasy"],
+    "genres": [
+      "Romantasy",
+      "High Fantasy",
+      "Dark Fantasy"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Slow Burn Romance",
@@ -212,10 +246,14 @@
     "author": "Carissa Broadbent",
     "category": "Fantasy",
     "cover": "book-covers/Serpent.jpg",
-    "genres": ["Dark Fantasy", "Romantasy", "Vampire Fantasy"],
+    "genres": [
+      "Dark Fantasy",
+      "Romantasy",
+      "Vampire Fantasy"
+    ],
     "tropes": [
       "Enemies to Lovers",
-      "Deadly Competition",
+      "Deadly Trials",
       "Vampires",
       "Forced Proximity",
       "Slow Burn Romance",
@@ -235,13 +273,17 @@
     "author": "Kristen Ciccarelli",
     "category": "Fantasy",
     "cover": "book-covers/Heartless_hunter.jpg",
-    "genres": ["Young Adult", "Romantasy", "Dark Fantasy"],
+    "genres": [
+      "Young Adult",
+      "Romantasy",
+      "Dark Fantasy"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Forbidden Romance",
-      "Hidden Identity",
+      "Secret Identity",
       "Witches",
-      "Secret Powers",
+      "Special Abilities",
       "Strong Female Protagonist",
       "Slow Burn Romance"
     ],
@@ -258,7 +300,11 @@
     "author": "Stephanie Garber",
     "category": "Fantasy",
     "cover": "book-covers/Once_Upon.webp",
-    "genres": ["Fairy Tale Fantasy", "Young Adult", "Romantasy"],
+    "genres": [
+      "Fairy Tale Fantasy",
+      "Young Adult",
+      "Romantasy"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Forbidden Romance",
@@ -281,12 +327,15 @@
     "author": "Stephanie Garber",
     "category": "Fantasy",
     "cover": "book-covers/Caraval.jpg",
-    "genres": ["Fantasy", "Young Adult", "Magical Realism"],
+    "genres": [
+      "Fantasy",
+      "Young Adult",
+      "Magical Realism"
+    ],
     "tropes": [
-      "Magical Games",
       "Mystery",
       "Riddles",
-      "Secret Identities",
+      "Secret Identity",
       "Unreliable Reality",
       "Sisterly Bond",
       "Slow Burn Romance"
@@ -304,10 +353,13 @@
     "author": "Lauren Roberts",
     "category": "Fantasy",
     "cover": "book-covers/Powerless.jpg",
-    "genres": ["Dystopian Fantasy", "Young Adult", "Romantasy"],
+    "genres": [
+      "Dystopian Fantasy",
+      "Young Adult",
+      "Romantasy"
+    ],
     "tropes": [
       "Enemies to Lovers",
-      "Rivals to Lovers",
       "Deadly Trials",
       "Secret Identity",
       "Royalty",
@@ -327,7 +379,11 @@
     "author": "R. F. Kuang",
     "category": "Fantasy",
     "cover": "book-covers/Poppy_War.jpg",
-    "genres": ["Dark Fantasy", "Military Fantasy", "Historical Fantasy"],
+    "genres": [
+      "Dark Fantasy",
+      "Military Fantasy",
+      "Historical Fantasy"
+    ],
     "tropes": [
       "Military Academy",
       "War",
@@ -350,10 +406,13 @@
     "author": "Holly Black",
     "category": "Fantasy",
     "cover": "book-covers/Cruel_Prince.webp",
-    "genres": ["Dark Fantasy", "Young Adult", "Fae Fantasy"],
+    "genres": [
+      "Dark Fantasy",
+      "Young Adult",
+      "Fae Fantasy"
+    ],
     "tropes": [
       "Enemies to Lovers",
-      "Fae Court",
       "Political Intrigue",
       "Morally Gray Characters",
       "Strong Female Protagonist",
@@ -373,7 +432,10 @@
     "author": "Ana Huang",
     "category": "Romance",
     "cover": "book-covers/twisted.jpg",
-    "genres": ["Contemporary Romance", "New Adult"],
+    "genres": [
+      "Contemporary Romance",
+      "New Adult"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Friends to Lovers",
@@ -395,7 +457,10 @@
     "author": "Ana Huang",
     "category": "Romance",
     "cover": "book-covers/king_of_wrath.jpg",
-    "genres": ["Contemporary Romance", "New Adult"],
+    "genres": [
+      "Contemporary Romance",
+      "New Adult"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Arranged Marriage",
@@ -416,7 +481,10 @@
     "author": "Ana Huang",
     "category": "Romance",
     "cover": "book-covers/striker.jpg",
-    "genres": ["Contemporary Romance", "Sports Romance"],
+    "genres": [
+      "Contemporary Romance",
+      "Sports Romance"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Sports Romance",
@@ -437,7 +505,11 @@
     "author": "Liz Tomforde",
     "category": "Romance",
     "cover": "book-covers/mile_high.jpg",
-    "genres": ["Contemporary Romance", "Sports Romance", "New Adult"],
+    "genres": [
+      "Contemporary Romance",
+      "Sports Romance",
+      "New Adult"
+    ],
     "tropes": [
       "Sports Romance",
       "Friends to Lovers",
@@ -460,7 +532,10 @@
     "author": "E. Salvador",
     "category": "Romance",
     "cover": "book-covers/please.webp",
-    "genres": ["Contemporary Romance", "Sports Romance"],
+    "genres": [
+      "Contemporary Romance",
+      "Sports Romance"
+    ],
     "tropes": [
       "Sports Romance",
       "College Romance",
@@ -480,13 +555,15 @@
     "author": "Ali Hazelwood",
     "category": "Romance",
     "cover": "book-covers/love.jpg",
-    "genres": ["Contemporary Romance", "Romantic Comedy"],
+    "genres": [
+      "Contemporary Romance",
+      "Romantic Comedy"
+    ],
     "tropes": [
       "Fake Dating",
       "Grumpy Sunshine",
       "Forced Proximity",
       "Workplace Romance",
-      "Women in STEM",
       "Slow Burn Romance"
     ],
     "moods": [
@@ -502,7 +579,11 @@
     "author": "Lynn Painter",
     "category": "Romance",
     "cover": "book-covers/better.jpg",
-    "genres": ["Young Adult", "Contemporary Romance", "Romantic Comedy"],
+    "genres": [
+      "Young Adult",
+      "Contemporary Romance",
+      "Romantic Comedy"
+    ],
     "tropes": [
       "Enemies to Lovers",
       "Friends to Lovers",
@@ -524,10 +605,12 @@
     "author": "Rebecca Yarros",
     "category": "Romance",
     "cover": "book-covers/last_letter.jpg",
-    "genres": ["Contemporary Romance", "Military Romance"],
+    "genres": [
+      "Contemporary Romance",
+      "Military Romance"
+    ],
     "tropes": [
       "Military Romance",
-      "Single Parent",
       "Found Family",
       "Second Chances",
       "Friends to Lovers",
@@ -545,11 +628,14 @@
     "author": "Rebecca Yarros",
     "category": "Romance",
     "cover": "book-covers/things.jpg",
-    "genres": ["Contemporary Romance", "Historical Romance"],
+    "genres": [
+      "Contemporary Romance",
+      "Historical Romance"
+    ],
     "tropes": [
       "Dual Timeline",
       "Second Chances",
-      "Forbidden Love",
+      "Forbidden Romance",
       "Emotional Romance",
       "Love Story Within a Story"
     ],
@@ -565,7 +651,10 @@
     "author": "Navessa Allen",
     "category": "Dark Romance",
     "cover": "book-covers/light_out.jpg",
-    "genres": ["Dark Romance", "Contemporary Romance"],
+    "genres": [
+      "Dark Romance",
+      "Contemporary Romance"
+    ],
     "tropes": [
       "Dark Romance",
       "Stalker Romance",
@@ -585,7 +674,10 @@
     "author": "H. D. Carlton",
     "category": "Dark Romance",
     "cover": "book-covers/haunting.jpg",
-    "genres": ["Dark Romance", "Gothic Romance"],
+    "genres": [
+      "Dark Romance",
+      "Gothic Romance"
+    ],
     "tropes": [
       "Dark Romance",
       "Stalker Romance",
@@ -605,7 +697,10 @@
     "author": "Neva Altaj",
     "category": "Dark Romance",
     "cover": "book-covers/painted.jpg",
-    "genres": ["Dark Romance", "Contemporary Romance"],
+    "genres": [
+      "Dark Romance",
+      "Contemporary Romance"
+    ],
     "tropes": [
       "Dark Romance",
       "Mafia Romance",
@@ -626,7 +721,11 @@
     "author": "Freida McFadden",
     "category": "Mystery / Thriller",
     "cover": "book-covers/never.jpg",
-    "genres": ["Psychological Thriller", "Mystery", "Suspense"],
+    "genres": [
+      "Psychological Thriller",
+      "Mystery",
+      "Suspense"
+    ],
     "tropes": [
       "Unreliable Narrator",
       "Secrets",
@@ -647,7 +746,11 @@
     "author": "Lucy Foley",
     "category": "Mystery / Thriller",
     "cover": "book-covers/guest.jpg",
-    "genres": ["Mystery", "Psychological Thriller", "Suspense"],
+    "genres": [
+      "Mystery",
+      "Psychological Thriller",
+      "Suspense"
+    ],
     "tropes": [
       "Multiple POV",
       "Murder Mystery",
@@ -668,7 +771,11 @@
     "author": "Shari Lapena",
     "category": "Mystery / Thriller",
     "cover": "book-covers/couple.jpg",
-    "genres": ["Psychological Thriller", "Domestic Thriller", "Mystery"],
+    "genres": [
+      "Psychological Thriller",
+      "Domestic Thriller",
+      "Mystery"
+    ],
     "tropes": [
       "Domestic Suspense",
       "Murder Mystery",
@@ -690,7 +797,11 @@
     "author": "Paula Hawkins",
     "category": "Mystery / Thriller",
     "cover": "book-covers/girl_train.jpg",
-    "genres": ["Psychological Thriller", "Mystery", "Domestic Thriller"],
+    "genres": [
+      "Psychological Thriller",
+      "Mystery",
+      "Domestic Thriller"
+    ],
     "tropes": [
       "Unreliable Narrator",
       "Multiple POV",
@@ -713,7 +824,11 @@
     "author": "Jennifer Lynn Barnes",
     "category": "Mystery / Thriller",
     "cover": "book-covers/naturals.jpg",
-    "genres": ["Young Adult", "Mystery", "Crime Thriller"],
+    "genres": [
+      "Young Adult",
+      "Mystery",
+      "Crime Thriller"
+    ],
     "tropes": [
       "Teen Detectives",
       "Crime Investigation",
@@ -735,12 +850,16 @@
     "author": "Jennifer Lynn Barnes",
     "category": "Mystery / Thriller",
     "cover": "book-covers/inheritance.jpg",
-    "genres": ["Young Adult", "Mystery", "Thriller"],
+    "genres": [
+      "Young Adult",
+      "Mystery",
+      "Thriller"
+    ],
     "tropes": [
       "Puzzles",
       "Riddles",
       "Mysterious Inheritance",
-      "Family Secrets",
+      "Secrets",
       "Wealthy Family",
       "Love Triangle",
       "Hidden Motives"
@@ -758,15 +877,19 @@
     "author": "Holly Jackson",
     "category": "Mystery / Thriller",
     "cover": "book-covers/good_girl.jpg",
-    "genres": ["Young Adult", "Mystery", "Crime Thriller"],
+    "genres": [
+      "Young Adult",
+      "Mystery",
+      "Crime Thriller"
+    ],
     "tropes": [
-      "Teen Detective",
+      "Teen Detectives",
       "Cold Case",
       "Crime Investigation",
       "Small Town Secrets",
       "Amateur Detective",
       "Murder Mystery",
-      "Hidden Secrets"
+      "Secrets"
     ],
     "moods": [
       "Suspenseful",
