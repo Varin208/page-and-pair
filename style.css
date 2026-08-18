@@ -1,0 +1,500 @@
+/* ==========================================================================
+   PAGE & PAIR — STYLESHEET
+   ==========================================================================
+   Design direction: an independent bookstore, not a tech dashboard.
+   Warm cream paper, deep brown ink, a whimsical-but-tidy display serif,
+   and a "ribbon bookmark" motif borrowed from the logo used as the
+   site's one signature decorative detail (see .ribbon-divider below).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. FONTS
+   We use three typefaces, each with a clear job:
+   - Fraunces  → display/headings (characterful, slightly whimsical serif)
+   - Literata  → body text (an editorial serif built for long reading)
+   - Inter     → small UI text: nav, labels, buttons, tags
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Literata:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&display=swap');
+
+/* --------------------------------------------------------------------------
+   1. DESIGN TOKENS (CSS custom properties)
+   Keeping every color, font, and spacing value here means the whole site's
+   look can be adjusted by changing values in ONE place.
+   -------------------------------------------------------------------------- */
+:root {
+  /* Colors — pulled from the Page & Pair logo (cream + chocolate brown) */
+  --color-bg: #F7F2E7;          /* main page background, warm cream */
+  --color-bg-alt: #F0E8D8;      /* slightly deeper cream, for alternating sections */
+  --color-card: #FBF8F1;        /* card background, a touch lighter than the page */
+  --color-ink: #3B2A1E;         /* primary text color, deep chocolate brown */
+  --color-ink-soft: #6E5A48;    /* secondary text, softer brown */
+  --color-border: #E3D6BE;      /* hairline borders / dividers */
+  --color-accent: #A8442B;      /* rust/terracotta — buttons, match %, emphasis */
+  --color-accent-dark: #7E3220; /* accent hover / pressed state */
+  --color-gold: #B8912F;        /* soft gold — small decorative accents */
+
+  /* Fonts */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-ui: 'Inter', -apple-system, sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.75rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+
+  /* Shape */
+  --radius-card: 14px;
+  --radius-pill: 999px;
+
+  /* Shadow — kept soft and warm, no cold gray drop-shadows */
+  --shadow-card: 0 10px 30px -12px rgba(59, 42, 30, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   2. RESET / BASE STYLES
+   A light reset so every browser starts from the same baseline.
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Consistent, visible focus ring for keyboard users (accessibility) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   3. SHARED / UTILITY STYLES
+   -------------------------------------------------------------------------- */
+.primary-button {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  padding: 0.9rem 2.1rem;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.primary-button:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-1px);
+}
+
+.primary-button:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   4. HEADER / NAVIGATION
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-lg);
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-image {
+  height: 48px;
+  width: auto;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.main-nav a {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover {
+  color: var(--color-accent);
+}
+
+/* Small underline flourish on hover instead of a generic color-only change */
+.main-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width 0.25s ease;
+}
+
+.main-nav a:hover::after {
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   5. HERO SECTION
+   -------------------------------------------------------------------------- */
+.hero {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-lg) var(--space-lg);
+  text-align: center;
+}
+
+.hero-brand {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--color-gold);
+  margin-bottom: var(--space-sm);
+}
+
+.hero-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1.15;
+  color: var(--color-ink);
+  margin-bottom: var(--space-sm);
+}
+
+.hero-subtext {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--color-ink-soft);
+  max-width: 520px;
+  margin: 0 auto var(--space-lg);
+}
+
+/* --------------------------------------------------------------------------
+   5b. RIBBON DIVIDER — the site's signature decorative element.
+   A small torn-ribbon shape echoing the two bookmarks in the Page & Pair
+   logo, used to mark the seam between the hero and the questionnaire
+   instead of a plain horizontal line.
+   -------------------------------------------------------------------------- */
+.hero::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 46px;
+  margin: 0 auto;
+  background-color: var(--color-accent);
+  /* Notch the bottom edge into a bookmark "V" using a clip-path */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
+  opacity: 0.9;
+}
+
+/* --------------------------------------------------------------------------
+   6. QUESTIONNAIRE SECTION
+   -------------------------------------------------------------------------- */
+.questionnaire {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-lg) var(--space-xl);
+}
+
+.question-stage {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  box-shadow: var(--shadow-card);
+}
+
+.question-heading {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: var(--color-ink);
+  margin-bottom: var(--space-sm);
+}
+
+.options-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+/* Each option is a checkbox + label pair. We visually hide the native
+   checkbox and style the <label> itself as a soft pill/tag, which reads
+   as "choosing a mood" rather than "filling out a form". */
+.option-choice {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.option-choice input {
+  /* Visually hidden, but still present for keyboard/screen-reader users */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.option-choice:hover {
+  border-color: var(--color-accent);
+  color: var(--color-ink);
+}
+
+/* Style the pill differently once its checkbox is checked */
+.option-choice:has(input:checked) {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Keep a visible focus ring on the pill itself when its checkbox is
+   keyboard-focused (since the checkbox itself is visually hidden) */
+.option-choice:has(input:focus-visible) {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+#find-pair-btn {
+  display: block;
+  margin: var(--space-lg) auto 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. RECOMMENDATIONS SECTION
+   -------------------------------------------------------------------------- */
+.recommendations {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg) var(--space-xl);
+  min-height: 4rem; /* keeps layout stable before JS populates results */
+}
+
+.recommendations-placeholder {
+  display: grid;
+  gap: var(--space-md);
+}
+
+/* Each recommended book is a horizontal card: cover on the left,
+   title/author/score/reasons on the right. */
+.book-card {
+  display: flex;
+  gap: var(--space-md);
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.book-rank {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-md);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-gold);
+}
+
+.book-cover {
+  width: 96px;
+  height: 144px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: var(--shadow-card);
+  flex-shrink: 0;
+  background-color: var(--color-bg-alt); /* shows while the image loads */
+}
+
+.book-info {
+  flex: 1;
+  min-width: 0; /* keeps long titles from overflowing the flex row */
+}
+
+.book-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+  margin-bottom: 0.15rem;
+}
+
+.book-author {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--color-ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+.match-score {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.25rem 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.reason-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+}
+
+.reason-match {
+  color: var(--color-ink);
+}
+
+.reason-miss {
+  color: var(--color-ink-soft);
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.empty-message {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--color-ink-soft);
+  text-align: center;
+  padding: var(--space-md);
+}
+
+@media (max-width: 640px) {
+  .book-card {
+    flex-direction: column;
+  }
+
+  .book-cover {
+    width: 100%;
+    height: 220px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. FOOTER
+   -------------------------------------------------------------------------- */
+.site-footer {
+  text-align: center;
+  padding: var(--space-lg);
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--color-ink-soft);
+}
+
+/* --------------------------------------------------------------------------
+   9. RESPONSIVE — mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .site-header {
+    padding: var(--space-sm) var(--space-md);
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .main-nav ul {
+    gap: var(--space-sm);
+  }
+
+  .hero,
+  .questionnaire,
+  .recommendations {
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+
+  .hero {
+    padding-top: var(--space-lg);
+  }
+
+  .question-stage {
+    padding: var(--space-sm);
+  }
+}

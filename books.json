@@ -1,0 +1,778 @@
+[
+  {
+    "id": 1,
+    "title": "Throne of Glass",
+    "author": "Sarah J. Maas",
+    "category": "Fantasy",
+    "cover": "book-covers/Throne_of_Glass.jpg",
+    "genres": ["High Fantasy", "Epic Fantasy", "Young Adult"],
+    "tropes": [
+      "Strong Female Protagonist",
+      "Found Family",
+      "Political Intrigue",
+      "Magic",
+      "Assassin",
+      "Chosen One",
+      "Slow Burn Romance"
+    ],
+    "moods": [
+      "Adventurous",
+      "Epic",
+      "Emotional",
+      "Dark"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Six of Crows",
+    "author": "Leigh Bardugo",
+    "category": "Fantasy",
+    "cover": "book-covers/Six_of_Crows.jpeg",
+    "genres": ["High Fantasy", "Young Adult", "Fantasy Heist"],
+    "tropes": [
+      "Found Family",
+      "Heist",
+      "Multiple POV",
+      "Morally Gray Characters",
+      "Enemies to Lovers",
+      "Slow Burn Romance",
+      "Political Intrigue"
+    ],
+    "moods": [
+      "Dark",
+      "Adventurous",
+      "Suspenseful",
+      "Emotional"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Fourth Wing",
+    "author": "Rebecca Yarros",
+    "category": "Fantasy",
+    "cover": "book-covers/Fourth_Wing.jpeg",
+    "genres": ["Romantasy", "High Fantasy", "New Adult"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Dragon Riders",
+      "Military Academy",
+      "Deadly Competition",
+      "Forced Proximity",
+      "Found Family",
+      "Slow Burn Romance"
+    ],
+    "moods": [
+      "Adventurous",
+      "Intense",
+      "Romantic",
+      "Epic"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "A Court of Thorns and Roses",
+    "author": "Sarah J. Maas",
+    "category": "Fantasy",
+    "cover": "book-covers/Acotar.jpg",
+    "genres": ["High Fantasy", "Romantasy", "Young Adult"],
+    "tropes": [
+      "Fae",
+      "Strong Female Protagonist",
+      "Found Family",
+      "Enemies to Lovers",
+      "Political Intrigue",
+      "Magic",
+      "Forbidden Romance"
+    ],
+    "moods": [
+      "Romantic",
+      "Adventurous",
+      "Emotional",
+      "Epic"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Crescent City",
+    "author": "Sarah J. Maas",
+    "category": "Fantasy",
+    "cover": "book-covers/CC.jpg",
+    "genres": ["Urban Fantasy", "Romantasy", "New Adult"],
+    "tropes": [
+      "Found Family",
+      "Enemies to Lovers",
+      "Slow Burn Romance",
+      "Political Intrigue",
+      "Rebellion",
+      "Mystery",
+      "High Stakes"
+    ],
+    "moods": [
+      "Emotional",
+      "Epic",
+      "Suspenseful",
+      "Romantic"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Shatter Me",
+    "author": "Tahereh Mafi",
+    "category": "Fantasy",
+    "cover": "book-covers/Shatter_Me.jpg",
+    "genres": ["Dystopian", "Young Adult", "Fantasy"],
+    "tropes": [
+      "Strong Female Protagonist",
+      "Enemies to Lovers",
+      "Love Triangle",
+      "Rebellion",
+      "Supernatural Powers",
+      "Found Family",
+      "Morally Gray Characters"
+    ],
+    "moods": [
+      "Dark",
+      "Emotional",
+      "Intense",
+      "Romantic"
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Empire of Flame and Thorns",
+    "author": "Marion Blackwood",
+    "category": "Fantasy",
+    "cover": "book-covers/Flame_Thorn.jpg",
+    "genres": ["Dark Fantasy", "Romantasy", "High Fantasy"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Fae",
+      "Dragon Shifters",
+      "Deadly Competition",
+      "Political Intrigue",
+      "Secret Rebellion",
+      "Forced Proximity"
+    ],
+    "moods": [
+      "Dark",
+      "Adventurous",
+      "Romantic",
+      "Intense"
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Lady of Darkness",
+    "author": "Melissa K. Roehrich",
+    "category": "Fantasy",
+    "cover": "book-covers/Lady_of_Darkness.jpg",
+    "genres": ["Dark Fantasy", "Romantasy", "High Fantasy"],
+    "tropes": [
+      "Strong Female Protagonist",
+      "Assassin",
+      "Revenge",
+      "Fae",
+      "Found Family",
+      "Political Intrigue",
+      "Magic"
+    ],
+    "moods": [
+      "Dark",
+      "Intense",
+      "Adventurous",
+      "Epic"
+    ]
+  },
+  {
+    "id": 9,
+    "title": "When the Moon Hatched",
+    "author": "Sarah A. Parker",
+    "category": "Fantasy",
+    "cover": "book-covers/Moon_Fall..jpg",
+    "genres": ["Romantasy", "High Fantasy", "Dark Fantasy"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Slow Burn Romance",
+      "Forced Proximity",
+      "Assassin",
+      "Strong Female Protagonist",
+      "Morally Gray Characters",
+      "Immersive World Building"
+    ],
+    "moods": [
+      "Dark",
+      "Emotional",
+      "Epic",
+      "Romantic"
+    ]
+  },
+  {
+    "id": 10,
+    "title": "The Serpent and the Wings of Night",
+    "author": "Carissa Broadbent",
+    "category": "Fantasy",
+    "cover": "book-covers/Serpent.jpg",
+    "genres": ["Dark Fantasy", "Romantasy", "Vampire Fantasy"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Deadly Competition",
+      "Vampires",
+      "Forced Proximity",
+      "Slow Burn Romance",
+      "Morally Gray Characters",
+      "Found Family"
+    ],
+    "moods": [
+      "Dark",
+      "Intense",
+      "Adventurous",
+      "Romantic"
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Heartless Hunter",
+    "author": "Kristen Ciccarelli",
+    "category": "Fantasy",
+    "cover": "book-covers/Heartless_hunter.jpg",
+    "genres": ["Young Adult", "Romantasy", "Dark Fantasy"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forbidden Romance",
+      "Hidden Identity",
+      "Witches",
+      "Secret Powers",
+      "Strong Female Protagonist",
+      "Slow Burn Romance"
+    ],
+    "moods": [
+      "Dark",
+      "Suspenseful",
+      "Romantic",
+      "Intense"
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Once Upon a Broken Heart",
+    "author": "Stephanie Garber",
+    "category": "Fantasy",
+    "cover": "book-covers/Once_Upon.webp",
+    "genres": ["Fairy Tale Fantasy", "Young Adult", "Romantasy"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Forbidden Romance",
+      "Magic",
+      "Curses",
+      "Morally Gray Characters",
+      "Fairy Tale Setting",
+      "Prophecy"
+    ],
+    "moods": [
+      "Magical",
+      "Romantic",
+      "Mysterious",
+      "Whimsical"
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Caraval",
+    "author": "Stephanie Garber",
+    "category": "Fantasy",
+    "cover": "book-covers/Caraval.jpg",
+    "genres": ["Fantasy", "Young Adult", "Magical Realism"],
+    "tropes": [
+      "Magical Games",
+      "Mystery",
+      "Riddles",
+      "Secret Identities",
+      "Unreliable Reality",
+      "Sisterly Bond",
+      "Slow Burn Romance"
+    ],
+    "moods": [
+      "Magical",
+      "Mysterious",
+      "Adventurous",
+      "Whimsical"
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Powerless",
+    "author": "Lauren Roberts",
+    "category": "Fantasy",
+    "cover": "book-covers/Powerless.jpg",
+    "genres": ["Dystopian Fantasy", "Young Adult", "Romantasy"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Rivals to Lovers",
+      "Deadly Trials",
+      "Secret Identity",
+      "Royalty",
+      "Political Intrigue",
+      "Slow Burn Romance"
+    ],
+    "moods": [
+      "Intense",
+      "Romantic",
+      "Suspenseful",
+      "Adventurous"
+    ]
+  },
+  {
+    "id": 15,
+    "title": "The Poppy War",
+    "author": "R. F. Kuang",
+    "category": "Fantasy",
+    "cover": "book-covers/Poppy_War.jpg",
+    "genres": ["Dark Fantasy", "Military Fantasy", "Historical Fantasy"],
+    "tropes": [
+      "Military Academy",
+      "War",
+      "Magic",
+      "Strong Female Protagonist",
+      "Political Intrigue",
+      "Dark Fantasy",
+      "Historical Inspiration"
+    ],
+    "moods": [
+      "Dark",
+      "Intense",
+      "Epic",
+      "Emotional"
+    ]
+  },
+  {
+    "id": 16,
+    "title": "The Cruel Prince",
+    "author": "Holly Black",
+    "category": "Fantasy",
+    "cover": "book-covers/Cruel_Prince.webp",
+    "genres": ["Dark Fantasy", "Young Adult", "Fae Fantasy"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Fae Court",
+      "Political Intrigue",
+      "Morally Gray Characters",
+      "Strong Female Protagonist",
+      "Court Intrigue",
+      "Forbidden Romance"
+    ],
+    "moods": [
+      "Dark",
+      "Mysterious",
+      "Intense",
+      "Adventurous"
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Twisted Series",
+    "author": "Ana Huang",
+    "category": "Romance",
+    "cover": "book-covers/twisted.jpg",
+    "genres": ["Contemporary Romance", "New Adult"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Friends to Lovers",
+      "Fake Dating",
+      "Forbidden Romance",
+      "Grumpy Sunshine",
+      "Forced Proximity",
+      "Found Family"
+    ],
+    "moods": [
+      "Romantic",
+      "Emotional",
+      "Dramatic"
+    ]
+  },
+  {
+    "id": 18,
+    "title": "King of Sin Series",
+    "author": "Ana Huang",
+    "category": "Romance",
+    "cover": "book-covers/king_of_wrath.jpg",
+    "genres": ["Contemporary Romance", "New Adult"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Arranged Marriage",
+      "Forced Proximity",
+      "Grumpy Sunshine",
+      "Opposites Attract",
+      "Forbidden Romance"
+    ],
+    "moods": [
+      "Romantic",
+      "Dramatic",
+      "Emotional"
+    ]
+  },
+  {
+    "id": 19,
+    "title": "The Striker",
+    "author": "Ana Huang",
+    "category": "Romance",
+    "cover": "book-covers/striker.jpg",
+    "genres": ["Contemporary Romance", "Sports Romance"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Sports Romance",
+      "Forced Proximity",
+      "Grumpy Sunshine",
+      "Workplace Romance",
+      "Slow Burn Romance"
+    ],
+    "moods": [
+      "Romantic",
+      "Intense",
+      "Dramatic"
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Windy City Series",
+    "author": "Liz Tomforde",
+    "category": "Romance",
+    "cover": "book-covers/mile_high.jpg",
+    "genres": ["Contemporary Romance", "Sports Romance", "New Adult"],
+    "tropes": [
+      "Sports Romance",
+      "Friends to Lovers",
+      "Enemies to Lovers",
+      "Forced Proximity",
+      "Found Family",
+      "Grumpy Sunshine",
+      "Slow Burn Romance"
+    ],
+    "moods": [
+      "Romantic",
+      "Funny",
+      "Emotional",
+      "Lighthearted"
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Please Don't Go",
+    "author": "E. Salvador",
+    "category": "Romance",
+    "cover": "book-covers/please.webp",
+    "genres": ["Contemporary Romance", "Sports Romance"],
+    "tropes": [
+      "Sports Romance",
+      "College Romance",
+      "Second Chances",
+      "Forced Proximity",
+      "Emotional Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Romantic",
+      "Heartfelt"
+    ]
+  },
+  {
+    "id": 22,
+    "title": "The Love Hypothesis",
+    "author": "Ali Hazelwood",
+    "category": "Romance",
+    "cover": "book-covers/love.jpg",
+    "genres": ["Contemporary Romance", "Romantic Comedy"],
+    "tropes": [
+      "Fake Dating",
+      "Grumpy Sunshine",
+      "Forced Proximity",
+      "Workplace Romance",
+      "Women in STEM",
+      "Slow Burn Romance"
+    ],
+    "moods": [
+      "Funny",
+      "Romantic",
+      "Lighthearted",
+      "Heartwarming"
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Better Than the Movies",
+    "author": "Lynn Painter",
+    "category": "Romance",
+    "cover": "book-covers/better.jpg",
+    "genres": ["Young Adult", "Contemporary Romance", "Romantic Comedy"],
+    "tropes": [
+      "Enemies to Lovers",
+      "Friends to Lovers",
+      "Boy Next Door",
+      "Fake Dating",
+      "Best Friends",
+      "Rom-Com"
+    ],
+    "moods": [
+      "Cute",
+      "Funny",
+      "Romantic",
+      "Lighthearted"
+    ]
+  },
+  {
+    "id": 24,
+    "title": "The Last Letter",
+    "author": "Rebecca Yarros",
+    "category": "Romance",
+    "cover": "book-covers/last_letter.jpg",
+    "genres": ["Contemporary Romance", "Military Romance"],
+    "tropes": [
+      "Military Romance",
+      "Single Parent",
+      "Found Family",
+      "Second Chances",
+      "Friends to Lovers",
+      "Emotional Romance"
+    ],
+    "moods": [
+      "Emotional",
+      "Romantic",
+      "Heartfelt"
+    ]
+  },
+  {
+    "id": 25,
+    "title": "The Things We Leave Unfinished",
+    "author": "Rebecca Yarros",
+    "category": "Romance",
+    "cover": "book-covers/things.jpg",
+    "genres": ["Contemporary Romance", "Historical Romance"],
+    "tropes": [
+      "Dual Timeline",
+      "Second Chances",
+      "Forbidden Love",
+      "Emotional Romance",
+      "Love Story Within a Story"
+    ],
+    "moods": [
+      "Emotional",
+      "Romantic",
+      "Heartfelt"
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Lights Out",
+    "author": "Navessa Allen",
+    "category": "Dark Romance",
+    "cover": "book-covers/light_out.jpg",
+    "genres": ["Dark Romance", "Contemporary Romance"],
+    "tropes": [
+      "Dark Romance",
+      "Stalker Romance",
+      "Masked Hero",
+      "Morally Gray Characters",
+      "Forced Proximity"
+    ],
+    "moods": [
+      "Dark",
+      "Intense",
+      "Suspenseful"
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Haunting Adeline",
+    "author": "H. D. Carlton",
+    "category": "Dark Romance",
+    "cover": "book-covers/haunting.jpg",
+    "genres": ["Dark Romance", "Gothic Romance"],
+    "tropes": [
+      "Dark Romance",
+      "Stalker Romance",
+      "Morally Gray Characters",
+      "Gothic Setting",
+      "Obsessive Romance"
+    ],
+    "moods": [
+      "Dark",
+      "Intense",
+      "Suspenseful"
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Perfectly Imperfect Series",
+    "author": "Neva Altaj",
+    "category": "Dark Romance",
+    "cover": "book-covers/painted.jpg",
+    "genres": ["Dark Romance", "Contemporary Romance"],
+    "tropes": [
+      "Dark Romance",
+      "Mafia Romance",
+      "Forced Proximity",
+      "Arranged Marriage",
+      "Morally Gray Characters",
+      "Found Family"
+    ],
+    "moods": [
+      "Dark",
+      "Intense",
+      "Romantic"
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Never Lie",
+    "author": "Freida McFadden",
+    "category": "Mystery / Thriller",
+    "cover": "book-covers/never.jpg",
+    "genres": ["Psychological Thriller", "Mystery", "Suspense"],
+    "tropes": [
+      "Unreliable Narrator",
+      "Secrets",
+      "Isolated Setting",
+      "Psychological Manipulation",
+      "Twist Ending"
+    ],
+    "moods": [
+      "Dark",
+      "Suspenseful",
+      "Mysterious",
+      "Psychological"
+    ]
+  },
+  {
+    "id": 30,
+    "title": "The Guest List",
+    "author": "Lucy Foley",
+    "category": "Mystery / Thriller",
+    "cover": "book-covers/guest.jpg",
+    "genres": ["Mystery", "Psychological Thriller", "Suspense"],
+    "tropes": [
+      "Multiple POV",
+      "Murder Mystery",
+      "Secrets",
+      "Isolated Setting",
+      "Multiple Suspects",
+      "Twist Ending"
+    ],
+    "moods": [
+      "Dark",
+      "Suspenseful",
+      "Mysterious"
+    ]
+  },
+  {
+    "id": 31,
+    "title": "The Couple Next Door",
+    "author": "Shari Lapena",
+    "category": "Mystery / Thriller",
+    "cover": "book-covers/couple.jpg",
+    "genres": ["Psychological Thriller", "Domestic Thriller", "Mystery"],
+    "tropes": [
+      "Domestic Suspense",
+      "Murder Mystery",
+      "Secrets",
+      "Deception",
+      "Multiple Suspects",
+      "Twist Ending"
+    ],
+    "moods": [
+      "Dark",
+      "Suspenseful",
+      "Mysterious",
+      "Psychological"
+    ]
+  },
+  {
+    "id": 32,
+    "title": "The Girl on the Train",
+    "author": "Paula Hawkins",
+    "category": "Mystery / Thriller",
+    "cover": "book-covers/girl_train.jpg",
+    "genres": ["Psychological Thriller", "Mystery", "Domestic Thriller"],
+    "tropes": [
+      "Unreliable Narrator",
+      "Multiple POV",
+      "Memory Loss",
+      "Psychological Manipulation",
+      "Missing Person",
+      "Secrets",
+      "Twist Ending"
+    ],
+    "moods": [
+      "Dark",
+      "Suspenseful",
+      "Mysterious",
+      "Psychological"
+    ]
+  },
+  {
+    "id": 33,
+    "title": "The Naturals Series",
+    "author": "Jennifer Lynn Barnes",
+    "category": "Mystery / Thriller",
+    "cover": "book-covers/naturals.jpg",
+    "genres": ["Young Adult", "Mystery", "Crime Thriller"],
+    "tropes": [
+      "Teen Detectives",
+      "Crime Investigation",
+      "Found Family",
+      "Special Abilities",
+      "Serial Killer Investigation",
+      "Multiple Suspects"
+    ],
+    "moods": [
+      "Dark",
+      "Suspenseful",
+      "Mysterious",
+      "Intense"
+    ]
+  },
+  {
+    "id": 34,
+    "title": "The Inheritance Games",
+    "author": "Jennifer Lynn Barnes",
+    "category": "Mystery / Thriller",
+    "cover": "book-covers/inheritance.jpg",
+    "genres": ["Young Adult", "Mystery", "Thriller"],
+    "tropes": [
+      "Puzzles",
+      "Riddles",
+      "Mysterious Inheritance",
+      "Family Secrets",
+      "Wealthy Family",
+      "Love Triangle",
+      "Hidden Motives"
+    ],
+    "moods": [
+      "Mysterious",
+      "Suspenseful",
+      "Adventurous",
+      "Romantic"
+    ]
+  },
+  {
+    "id": 35,
+    "title": "A Good Girl's Guide to Murder",
+    "author": "Holly Jackson",
+    "category": "Mystery / Thriller",
+    "cover": "book-covers/good_girl.jpg",
+    "genres": ["Young Adult", "Mystery", "Crime Thriller"],
+    "tropes": [
+      "Teen Detective",
+      "Cold Case",
+      "Crime Investigation",
+      "Small Town Secrets",
+      "Amateur Detective",
+      "Murder Mystery",
+      "Hidden Secrets"
+    ],
+    "moods": [
+      "Suspenseful",
+      "Mysterious",
+      "Dark",
+      "Intense"
+    ]
+  }
+]

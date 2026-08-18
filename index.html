@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page & Pair — Find Your Perfect Read</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===================== HEADER / NAVIGATION ===================== -->
+  <header class="site-header">
+    <a href="#home" class="logo">
+      <img src="book-covers/logo.png" alt="Page & Pair logo" class="logo-image">
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#discover">Discover</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <section class="hero" id="home">
+    <p class="hero-brand">PAGE & PAIR</p>
+    <h1 class="hero-heading">Find your next perfect read.</h1>
+    <p class="hero-subtext">
+      Tell us what you're in the mood for — your favorite genres, the tropes
+      that pull you in, and the feeling you're chasing — and we'll match you
+      with a book that feels made for you.
+    </p>
+    <button class="primary-button" id="hero-cta-btn">Find My Pair</button>
+  </section>
+
+  <!-- ===================== QUESTIONNAIRE SECTION ===================== -->
+  <section class="questionnaire" id="discover">
+
+    <!-- STAGE 1: GENRE (single choice, so radio buttons instead of checkboxes) -->
+    <div class="question-stage" id="stage-genre">
+      <h2 class="question-heading">What are you in the mood for?</h2>
+      <div class="options-group" id="genre-options">
+        <label class="option-choice">
+          <input type="radio" name="genre" value="Fantasy">
+          Fantasy
+        </label>
+        <label class="option-choice">
+          <input type="radio" name="genre" value="Romance">
+          Romance
+        </label>
+        <label class="option-choice">
+          <input type="radio" name="genre" value="Mystery / Thriller">
+          Mystery / Thriller
+        </label>
+        <label class="option-choice">
+          <input type="radio" name="genre" value="Dark Romance">
+          Dark Romance
+        </label>
+      </div>
+    </div>
+
+    <!-- STAGE 2: TROPES (multiple choice) -->
+    <div class="question-stage" id="stage-tropes">
+      <h2 class="question-heading">What kind of story pulls you in?</h2>
+      <div class="options-group" id="trope-options">
+        <label class="option-choice">
+          <input type="checkbox" name="trope" value="Enemies to Lovers">
+          Enemies to Lovers
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="trope" value="Found Family">
+          Found Family
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="trope" value="Slow Burn">
+          Slow Burn
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="trope" value="Forced Proximity">
+          Forced Proximity
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="trope" value="Strong Female Protagonist">
+          Strong Female Protagonist
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="trope" value="Mystery">
+          Mystery
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="trope" value="Political Intrigue">
+          Political Intrigue
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="trope" value="Friends to Lovers">
+          Friends to Lovers
+        </label>
+      </div>
+    </div>
+
+    <!-- STAGE 3: MOOD (multiple choice) -->
+    <div class="question-stage" id="stage-mood">
+      <h2 class="question-heading">What feeling are you looking for?</h2>
+      <div class="options-group" id="mood-options">
+        <label class="option-choice">
+          <input type="checkbox" name="mood" value="Romantic">
+          Romantic
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="mood" value="Emotional">
+          Emotional
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="mood" value="Dark">
+          Dark
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="mood" value="Adventurous">
+          Adventurous
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="mood" value="Mysterious">
+          Mysterious
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="mood" value="Funny">
+          Funny
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="mood" value="Magical">
+          Magical
+        </label>
+        <label class="option-choice">
+          <input type="checkbox" name="mood" value="Intense">
+          Intense
+        </label>
+      </div>
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <button class="primary-button" id="find-pair-btn">Find My Pair</button>
+
+  </section>
+
+  <!-- ===================== RECOMMENDATIONS SECTION ===================== -->
+  <section class="recommendations" id="recommendations">
+    <!-- This section is populated by script.js after the user submits their preferences -->
+    <div class="recommendations-placeholder" id="recommendations-list">
+      <!-- Recommended book cards are inserted here by JavaScript -->
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer" id="about">
+    <p>Made for readers who never know what to read next.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
