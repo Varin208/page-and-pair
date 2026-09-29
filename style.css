@@ -515,3 +515,187 @@ input:focus-visible {
     padding: var(--space-sm);
   }
 }
+
+/* Smaller Next/Back buttons, with room above so they don't crowd the pills */
+#tropes-next-btn,
+#tropes-back-btn,
+#find-pair-btn,
+#mood-back-btn {
+  font-size: 0.85rem;
+  padding: 0.6rem 1.5rem;
+  margin-top: var(--space-md);
+}
+
+/* Outline style for Back buttons, so they read as the lesser action */
+.secondary-button {
+  background-color: transparent;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  margin-left: var(--space-sm);
+}
+
+.secondary-button:hover {
+  background-color: var(--color-bg-alt);
+}
+
+/* Already Read / Not Interested buttons on each book card */
+.card-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.75rem;
+}
+
+.card-action-btn {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.card-action-btn:hover {
+  background-color: var(--color-bg-alt);
+  color: var(--color-accent);
+}
+/* --------------------------------------------------------------------------
+   10. LOGIN PROMPT (below hero button)
+   -------------------------------------------------------------------------- */
+.login-prompt {
+  margin-top: var(--space-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}
+
+.link-button {
+  display: inline-block;
+  background-color: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.link-button:hover {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* --------------------------------------------------------------------------
+   11. LOGIN / SIGNUP MODAL
+   -------------------------------------------------------------------------- */
+.modal-overlay[hidden] {
+  display: none;
+}
+   .modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(59, 42, 30, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: var(--space-md);
+}
+
+.modal-box {
+  position: relative;
+  background-color: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  width: 100%;
+  max-width: 380px;
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-ink-soft);
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--color-ink);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--color-ink);
+  margin-bottom: 0.4rem;
+}
+
+.modal-subtext {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-md);
+}
+
+.modal-field {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-sm);
+}
+
+.modal-field input {
+  display: block;
+  width: 100%;
+  margin-top: 0.3rem;
+  padding: 0.6rem 0.8rem;
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.modal-field input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.modal-error {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+#auth-submit-btn {
+  width: 100%;
+  margin-top: var(--space-xs);
+}
+
+.modal-switch {
+  margin-top: var(--space-md);
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--color-ink-soft);
+}

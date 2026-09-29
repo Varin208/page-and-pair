@@ -8,10 +8,9 @@
 </head>
 <body>
 
-  <!-- ===================== HEADER / NAVIGATION ===================== -->
   <header class="site-header">
     <a href="#home" class="logo">
-      <img src="book-covers/logo.png" alt="Page & Pair logo" class="logo-image">
+      <img src="logo.png" alt="Page & Pair logo" class="logo-image">
     </a>
     <nav class="main-nav">
       <ul>
@@ -22,187 +21,82 @@
     </nav>
   </header>
 
-  <!-- ===================== HERO SECTION ===================== -->
   <section class="hero" id="home">
     <p class="hero-brand">PAGE & PAIR</p>
     <h1 class="hero-heading">Find your next perfect read.</h1>
     <p class="hero-subtext">
-      Tell us what you're in the mood for — your favorite genres, the tropes
-      that pull you in, and the feeling you're chasing — and we'll match you
-      with a book that feels made for you.
+      Tell us what you're in the mood for, the tropes that pull you in,
+      and the feeling you're chasing, and we'll match you with a book
+      that feels made for you.
     </p>
-    <button class="primary-button" id="hero-cta-btn">Find My Pair</button>
+        <button class="primary-button" id="hero-cta-btn">Find My Pair</button>
+    <p class="login-prompt">
+      <button class="link-button" id="open-login-btn">Log in</button>
+      to save your progress
+    </p>
   </section>
 
-  <!-- ===================== QUESTIONNAIRE SECTION ===================== -->
+  <!-- ===================== LOGIN / SIGNUP MODAL ===================== -->
+  <div class="modal-overlay" id="auth-modal" hidden>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+      <button class="modal-close" id="auth-modal-close" aria-label="Close">&times;</button>
+
+      <h2 class="modal-title" id="auth-modal-title">Log in</h2>
+      <p class="modal-subtext" id="auth-modal-subtext">
+        Save the books you've marked as read or not interested, across devices.
+      </p>
+
+      <form id="auth-form">
+        <label class="modal-field">
+          Email
+          <input type="email" id="auth-email" required>
+        </label>
+        <label class="modal-field">
+          Password
+          <input type="password" id="auth-password" required minlength="6">
+        </label>
+        <p class="modal-error" id="auth-error" hidden></p>
+        <button type="submit" class="primary-button" id="auth-submit-btn">Log in</button>
+      </form>
+
+      <p class="modal-switch">
+        <span id="auth-switch-text">Don't have an account?</span>
+        <button class="link-button" id="auth-switch-btn">Sign up</button>
+      </p>
+    </div>
+  </div>
+  </section>
+
   <section class="questionnaire" id="discover">
 
-    <!-- STAGE 1: GENRE (single choice) -->
+    <!-- PAGE 1: genre (single choice). script.js fills #genre-options -->
     <div class="question-stage" id="stage-genre">
       <h2 class="question-heading">What are you in the mood for?</h2>
-      <div class="options-group" id="genre-options">
-        <label class="option-choice">
-          <input type="radio" name="genre" value="Fantasy">
-          Fantasy
-        </label>
-        <label class="option-choice">
-          <input type="radio" name="genre" value="Romance">
-          Romance
-        </label>
-        <label class="option-choice">
-          <input type="radio" name="genre" value="Mystery / Thriller">
-          Mystery / Thriller
-        </label>
-        <label class="option-choice">
-          <input type="radio" name="genre" value="Dark Romance">
-          Dark Romance
-        </label>
-      </div>
+      <div class="options-group" id="genre-options"></div>
     </div>
 
-    <!-- STAGE 2: TROPES (multiple choice) — grouped into readable clusters.
-         Every trope from the cleaned books.json is included below (81
-         unique tropes); the grouping is just for scanability and doesn't
-         affect how script.js reads the values. -->
-    <div class="question-stage" id="stage-tropes">
+    <!-- PAGE 2: tropes for the chosen genre (multi-select) -->
+    <div class="question-stage" id="stage-tropes" hidden>
       <h2 class="question-heading">What kind of story pulls you in?</h2>
-
-      <h3 class="trope-group-label">Romance dynamics</h3>
-      <div class="options-group" id="trope-options-romance">
-        <label class="option-choice"><input type="checkbox" name="trope" value="Enemies to Lovers">Enemies to Lovers</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Friends to Lovers">Friends to Lovers</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Slow Burn Romance">Slow Burn Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Forced Proximity">Forced Proximity</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Forbidden Romance">Forbidden Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Opposites Attract">Opposites Attract</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Fake Dating">Fake Dating</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Grumpy Sunshine">Grumpy Sunshine</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Arranged Marriage">Arranged Marriage</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Second Chances">Second Chances</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Love Triangle">Love Triangle</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Workplace Romance">Workplace Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Sports Romance">Sports Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="College Romance">College Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Military Romance">Military Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Mafia Romance">Mafia Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Dark Romance">Dark Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Stalker Romance">Stalker Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Obsessive Romance">Obsessive Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Emotional Romance">Emotional Romance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Rom-Com">Rom-Com</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Dual Timeline">Dual Timeline</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Love Story Within a Story">Love Story Within a Story</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Best Friends">Best Friends</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Boy Next Door">Boy Next Door</label>
-      </div>
-
-      <h3 class="trope-group-label">Fantasy & magic</h3>
-      <div class="options-group" id="trope-options-fantasy">
-        <label class="option-choice"><input type="checkbox" name="trope" value="Magic">Magic</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Fae">Fae</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Dragon Riders">Dragon Riders</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Dragon Shifters">Dragon Shifters</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Vampires">Vampires</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Witches">Witches</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Curses">Curses</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Prophecy">Prophecy</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Fairy Tale Setting">Fairy Tale Setting</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Immersive World Building">Immersive World Building</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Unreliable Reality">Unreliable Reality</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Dark Fantasy">Dark Fantasy</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Historical Inspiration">Historical Inspiration</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="War">War</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Military Academy">Military Academy</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Deadly Trials">Deadly Trials</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="High Stakes">High Stakes</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Royalty">Royalty</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Rebellion">Rebellion</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Revenge">Revenge</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Assassin">Assassin</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Special Abilities">Special Abilities</label>
-      </div>
-
-      <h3 class="trope-group-label">Mystery & intrigue</h3>
-      <div class="options-group" id="trope-options-mystery">
-        <label class="option-choice"><input type="checkbox" name="trope" value="Political Intrigue">Political Intrigue</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Court Intrigue">Court Intrigue</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Mystery">Mystery</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Murder Mystery">Murder Mystery</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Mysterious Inheritance">Mysterious Inheritance</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Twist Ending">Twist Ending</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Secrets">Secrets</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Small Town Secrets">Small Town Secrets</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Hidden Motives">Hidden Motives</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Secret Identity">Secret Identity</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Unreliable Narrator">Unreliable Narrator</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Psychological Manipulation">Psychological Manipulation</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Memory Loss">Memory Loss</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Missing Person">Missing Person</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Deception">Deception</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Domestic Suspense">Domestic Suspense</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Isolated Setting">Isolated Setting</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Multiple Suspects">Multiple Suspects</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Multiple POV">Multiple POV</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Amateur Detective">Amateur Detective</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Teen Detectives">Teen Detectives</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Cold Case">Cold Case</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Crime Investigation">Crime Investigation</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Serial Killer Investigation">Serial Killer Investigation</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Puzzles">Puzzles</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Riddles">Riddles</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Wealthy Family">Wealthy Family</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Gothic Setting">Gothic Setting</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Masked Hero">Masked Hero</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Morally Gray Characters">Morally Gray Characters</label>
-      </div>
-
-      <h3 class="trope-group-label">Found family & strength</h3>
-      <div class="options-group" id="trope-options-family">
-        <label class="option-choice"><input type="checkbox" name="trope" value="Found Family">Found Family</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Strong Female Protagonist">Strong Female Protagonist</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Sisterly Bond">Sisterly Bond</label>
-        <label class="option-choice"><input type="checkbox" name="trope" value="Heist">Heist</label>
-      </div>
+      <div class="options-group" id="trope-options"></div>
+      <button class="primary-button" id="tropes-next-btn">Next</button>
+      <button class="primary-button secondary-button" id="tropes-back-btn">Back</button>
     </div>
 
-    <!-- STAGE 3: MOOD (multiple choice) -->
-    <div class="question-stage" id="stage-mood">
+    <!-- PAGE 3: moods (multi-select) -->
+    <div class="question-stage" id="stage-mood" hidden>
       <h2 class="question-heading">What feeling are you looking for?</h2>
-      <div class="options-group" id="mood-options">
-        <label class="option-choice"><input type="checkbox" name="mood" value="Adventurous">Adventurous</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Cute">Cute</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Dark">Dark</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Dramatic">Dramatic</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Emotional">Emotional</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Epic">Epic</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Funny">Funny</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Heartfelt">Heartfelt</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Heartwarming">Heartwarming</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Intense">Intense</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Lighthearted">Lighthearted</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Magical">Magical</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Mysterious">Mysterious</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Psychological">Psychological</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Romantic">Romantic</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Suspenseful">Suspenseful</label>
-        <label class="option-choice"><input type="checkbox" name="mood" value="Whimsical">Whimsical</label>
-      </div>
+      <div class="options-group" id="mood-options"></div>
+      <button class="primary-button" id="find-pair-btn">Find My Pair</button>
+      <button class="primary-button secondary-button" id="mood-back-btn">Back</button>
     </div>
-
-    <!-- SUBMIT BUTTON -->
-    <button class="primary-button" id="find-pair-btn">Find My Pair</button>
 
   </section>
 
-  <!-- ===================== RECOMMENDATIONS SECTION ===================== -->
   <section class="recommendations" id="recommendations">
-    <!-- This section is populated by script.js after the user submits their preferences -->
-    <div class="recommendations-placeholder" id="recommendations-list">
-      <!-- Recommended book cards are inserted here by JavaScript -->
-    </div>
+    <div class="recommendations-placeholder" id="recommendations-list"></div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
   <footer class="site-footer" id="about">
     <p>Made for readers who never know what to read next.</p>
   </footer>

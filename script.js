@@ -1,286 +1,447 @@
-/* ==========================================================================
-   PAGE & PAIR — SCRIPT.JS
-   ==========================================================================
-   What this file does, in order:
-   1. Loads the book collection from books.json
-   2. Reads which genres/tropes/moods the user checked
-   3. Scores every book against those selections
-   4. Ranks the books and displays the top 3, with a short explanation
-      of WHY each one was recommended
-   ========================================================================== */
+// ===== Page & Pair: talks to the Spring Boot API =====
 
-/* --------------------------------------------------------------------------
-   0. HOW SCORING WORKS (read this before the code below)
-   --------------------------------------------------------------------------
-   Every book is scored out of 100%, split across three categories:
+const API_BASE = 'https://page-and-pair-api.onrender.com';
+const BATCH_SIZE = 20;   // how many we fetch from the backend at once
+const VISIBLE_COUNT = 5; // how many cards are shown at a time
 
-     - Genre  is worth 40% of the score
-     - Tropes is worth 35% of the score
-     - Mood   is worth 25% of the score
+const selection = { genreId: null, tropeIds: [], moodIds: [] };
 
-   If the user skips a category entirely (e.g. picks no moods), that
-   category's weight is shared out proportionally between the categories
-   they DID pick, so the percentages still add up to 100%.
+// ----- Login/signup modal -----
+const authModal = document.getElementById('auth-modal');
+const authForm = document.getElementById('auth-form');
+const authEmailInput = document.getElementById('auth-email');
+const authPasswordInput = document.getElementById('auth-password');
+const authError = document.getElementById('auth-error');
+const authTitle = document.getElementById('auth-modal-title');
+const authSubtext = document.getElementById('auth-modal-subtext');
+const authSubmitBtn = document.getElementById('auth-submit-btn');
+const authSwitchText = document.getElementById('auth-switch-text');
+const authSwitchBtn = document.getElementById('auth-switch-btn');
 
-   Within a category, the book earns a fraction of that category's weight
-   based on how MANY of the user's chosen options it matches.
-   Example: user picks 2 tropes, book matches 1 of them → book earns
-   half of the tropes weight.
-   -------------------------------------------------------------------------- */
+let authMode = 'login'; // or 'signup'
 
-const CATEGORY_WEIGHTS = {
-  genres: 40,
-  tropes: 35,
-  moods: 25
+function openAuthModal() {
+  authError.hidden = true;
+  authForm.reset();
+  authModal.hidden = false;
+}
+
+function closeAuthModal() {
+  authModal.hidden = true;
+}
+
+function setAuthMode(mode) {
+  authMode = mode;
+  authError.hidden = true;
+  if (mode === 'login') {
+    authTitle.textContent = 'Log in';
+    authSubtext.textContent = "Save the books you've marked as read or not interested, across devices.";
+    authSubmitBtn.textContent = 'Log in';
+    authSwitchText.textContent = "Don't have an account?";
+    authSwitchBtn.textContent = 'Sign up';
+  } else {
+    authTitle.textContent = 'Sign up';
+    authSubtext.textContent = 'Create an account to save your progress across devices.';
+    authSubmitBtn.textContent = 'Sign up';
+    authSwitchText.textContent = 'Already have an account?';
+    authSwitchBtn.textContent = 'Log in';
+  }
+}
+
+document.getElementById('open-login-btn').addEventListener('click', () => {
+  setAuthMode('login');
+  openAuthModal();
+});
+document.getElementById('auth-modal-close').addEventListener('click', closeAuthModal);
+
+// Clicking the dark backdrop (not the box itself) also closes it
+authModal.addEventListener('click', (event) => {
+  if (event.target === authModal) closeAuthModal();
+});
+
+authSwitchBtn.addEventListener('click', () => {
+  setAuthMode(authMode === 'login' ? 'signup' : 'login');
+});
+
+// ----- NEW: dismissed books, saved across reloads -----
+const DISMISSED_KEY = 'pageAndPair.dismissedBookIds';
+
+function loadDismissedIds() {
+  try {
+    const raw = localStorage.getItem(DISMISSED_KEY);
+    return raw ? new Set(JSON.parse(raw)) : new Set();
+  } catch (error) {
+    console.error('Could not read saved dismissals:', error);
+    return new Set();
+  }
+}
+
+function saveDismissedIds(idSet) {
+  try {
+    localStorage.setItem(DISMISSED_KEY, JSON.stringify(Array.from(idSet)));
+  } catch (error) {
+    console.error('Could not save dismissal:', error);
+  }
+}
+
+let dismissedIds = loadDismissedIds();
+let bookQueue = []; // books fetched but not yet shown
+
+const stages = {
+  genre: document.getElementById('stage-genre'),
+  tropes: document.getElementById('stage-tropes'),
+  mood: document.getElementById('stage-mood')
 };
-
-/* --------------------------------------------------------------------------
-   1. GRAB ELEMENTS WE'LL NEED
-   -------------------------------------------------------------------------- */
-const heroButton = document.getElementById('hero-cta-btn');
-const findPairButton = document.getElementById('find-pair-btn');
+const genreOptions = document.getElementById('genre-options');
+const tropeOptions = document.getElementById('trope-options');
+const moodOptions = document.getElementById('mood-options');
 const recommendationsSection = document.getElementById('recommendations');
 const recommendationsList = document.getElementById('recommendations-list');
 
-// This will hold the book data once books.json has loaded.
-let allBooks = [];
+function showStage(name) {
+  Object.entries(stages).forEach(([key, el]) => {
+    el.hidden = key !== name;
+  });
+}
 
-/* --------------------------------------------------------------------------
-   2. LOAD THE BOOKS
-   We fetch books.json as soon as the page loads, so it's ready by the
-   time the user clicks "Find My Pair".
-   -------------------------------------------------------------------------- */
-async function loadBooks() {
+async function fetchJson(path) {
+  const response = await fetch(API_BASE + path);
+  if (!response.ok) throw new Error('Request failed: ' + response.status);
+  return response.json();
+}
+
+function makePill(type, name, item, onChange) {
+  const label = document.createElement('label');
+  label.className = 'option-choice';
+  const input = document.createElement('input');
+  input.type = type;
+  input.name = name;
+  input.value = item.id;
+  input.addEventListener('change', () => onChange(input));
+  label.appendChild(input);
+  label.appendChild(document.createTextNode(item.name));
+  return label;
+}
+
+function showError(message) {
+  recommendationsList.innerHTML = '<p class="empty-message">' + message + '</p>';
+  recommendationsSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+async function loadGenres() {
   try {
-    const response = await fetch('books.json');
-
-    if (!response.ok) {
-      throw new Error(`Could not load books.json (status ${response.status})`);
-    }
-
-    allBooks = await response.json();
+    const genres = await fetchJson('/api/genres');
+    genres.forEach((genre) => {
+      genreOptions.appendChild(
+        makePill('radio', 'genre', genre, () => chooseGenre(genre.id))
+      );
+    });
   } catch (error) {
-    console.error('Error loading books:', error);
-    // If the data fails to load, tell the user in plain language
-    // instead of leaving the button silently broken.
-    recommendationsList.innerHTML = `
-      <p class="empty-message">
-        We couldn't load the book collection right now. Please refresh the page and try again.
-      </p>
-    `;
+    console.error(error);
+    genreOptions.innerHTML =
+      '<p class="empty-message">Could not load genres. Please refresh and try again.</p>';
   }
 }
 
-loadBooks();
+async function chooseGenre(genreId) {
+  selection.genreId = genreId;
+  selection.tropeIds = [];
+  tropeOptions.innerHTML = '';
+  try {
+    const tropes = await fetchJson('/api/genres/' + genreId + '/tropes');
+    tropes.forEach((trope) => {
+      tropeOptions.appendChild(
+        makePill('checkbox', 'trope', trope, (input) => toggle(selection.tropeIds, trope.id, input.checked))
+      );
+    });
+    showStage('tropes');
+  } catch (error) {
+    console.error(error);
+    showError('Could not load tropes. Please try again.');
+  }
+}
 
-/* --------------------------------------------------------------------------
-   3. THE HERO BUTTON JUST SCROLLS DOWN TO THE QUESTIONNAIRE
-   -------------------------------------------------------------------------- */
-heroButton.addEventListener('click', () => {
+async function loadMoods() {
+  try {
+    const moods = await fetchJson('/api/moods');
+    moods.forEach((mood) => {
+      moodOptions.appendChild(
+        makePill('checkbox', 'mood', mood, (input) => toggle(selection.moodIds, mood.id, input.checked))
+      );
+    });
+  } catch (error) {
+    console.error(error);
+    moodOptions.innerHTML =
+      '<p class="empty-message">Could not load moods. Please refresh and try again.</p>';
+  }
+}
+
+
+
+function toggle(list, id, isOn) {
+  const index = list.indexOf(id);
+  if (isOn && index === -1) list.push(id);
+  if (!isOn && index !== -1) list.splice(index, 1);
+}
+
+document.getElementById('hero-cta-btn').addEventListener('click', () => {
   document.getElementById('discover').scrollIntoView({ behavior: 'smooth' });
 });
-
-/* --------------------------------------------------------------------------
-   4. READ THE USER'S SELECTIONS
-   Returns an array of the checked values for a given checkbox group name,
-   e.g. getCheckedValues('genre') → ["Fantasy", "Dark Romance"]
-   -------------------------------------------------------------------------- */
-function getCheckedValues(groupName) {
-  const checkedBoxes = document.querySelectorAll(`input[name="${groupName}"]:checked`);
-  return Array.from(checkedBoxes).map((box) => box.value);
-}
-
-/* --------------------------------------------------------------------------
-   5. MATCHING HELPERS
-   We compare strings loosely (case-insensitive, "contains" matching)
-   because the user's option labels don't always match the book data
-   word-for-word — e.g. the user picks "Slow Burn" but a book's trope
-   list says "Slow Burn Romance". Both should count as a match.
-   -------------------------------------------------------------------------- */
-function isLooseMatch(selectedValue, bookValue) {
-  const a = selectedValue.toLowerCase().trim();
-  const b = bookValue.toLowerCase().trim();
-  return a.includes(b) || b.includes(a);
-}
-
-// Returns the subset of `selectedValues` that match at least one entry
-// in `bookValues`. Used for both scoring and for the "why" explanation.
-function findMatches(selectedValues, bookValues) {
-  return selectedValues.filter((selected) =>
-    bookValues.some((bookValue) => isLooseMatch(selected, bookValue))
-  );
-}
-
-/* --------------------------------------------------------------------------
-   6. SCORE A SINGLE BOOK AGAINST THE USER'S SELECTIONS
-   Returns an object with the overall percentage score and the specific
-   genres/tropes/moods that matched (for the explanation later).
-   -------------------------------------------------------------------------- */
-function scoreBook(book, selections) {
-  // A book's "genre" data is its category plus its genres list combined,
-  // so a pick like "Fantasy" can match either.
-  const bookGenreValues = [book.category, ...book.genres];
-
-  const matchedGenres = findMatches(selections.genres, bookGenreValues);
-  const matchedTropes = findMatches(selections.tropes, book.tropes);
-  const matchedMoods = findMatches(selections.moods, book.moods);
-
-  // Figure out how many categories the user actually made picks in,
-  // so we can redistribute weight away from any category they skipped.
-  const activeCategories = [];
-  if (selections.genres.length > 0) activeCategories.push('genres');
-  if (selections.tropes.length > 0) activeCategories.push('tropes');
-  if (selections.moods.length > 0) activeCategories.push('moods');
-
-  const totalActiveWeight = activeCategories.reduce(
-    (sum, category) => sum + CATEGORY_WEIGHTS[category],
-    0
-  );
-
-  let score = 0;
-
-  if (selections.genres.length > 0) {
-    const genreWeight = (CATEGORY_WEIGHTS.genres / totalActiveWeight) * 100;
-    score += (matchedGenres.length / selections.genres.length) * genreWeight;
-  }
-
-  if (selections.tropes.length > 0) {
-    const tropeWeight = (CATEGORY_WEIGHTS.tropes / totalActiveWeight) * 100;
-    score += (matchedTropes.length / selections.tropes.length) * tropeWeight;
-  }
-
-  if (selections.moods.length > 0) {
-    const moodWeight = (CATEGORY_WEIGHTS.moods / totalActiveWeight) * 100;
-    score += (matchedMoods.length / selections.moods.length) * moodWeight;
-  }
-
-  return {
-    book,
-    score: Math.round(score),
-    matchedGenres,
-    matchedTropes,
-    matchedMoods
-  };
-}
-
-/* --------------------------------------------------------------------------
-   7. RANK ALL BOOKS AND RETURN THE TOP 3
-   -------------------------------------------------------------------------- */
-function getTopRecommendations(selections) {
-  return allBooks
-    .map((book) => scoreBook(book, selections))
-    .filter((result) => result.score > 0) // drop books with no match at all
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
-}
-
-/* --------------------------------------------------------------------------
-   8. BUILD THE "WHY THIS BOOK" CHECKLIST
-   Only the criteria the user actually selected are shown, marked with
-   ✓ if the book matched them or ✗ if it didn't — this keeps the
-   recommendation transparent instead of a black box.
-   -------------------------------------------------------------------------- */
-function buildReasonList(selections, result) {
-  const allSelected = [
-    ...selections.genres.map((value) => ({ value, matched: result.matchedGenres.includes(value) })),
-    ...selections.tropes.map((value) => ({ value, matched: result.matchedTropes.includes(value) })),
-    ...selections.moods.map((value) => ({ value, matched: result.matchedMoods.includes(value) }))
-  ];
-
-  return allSelected
-    .map(({ value, matched }) => {
-      const icon = matched ? '✓' : '✗';
-      const className = matched ? 'reason-match' : 'reason-miss';
-      return `<li class="${className}">${icon} ${value}</li>`;
-    })
-    .join('');
-}
-
-/* --------------------------------------------------------------------------
-   9. RENDER THE RECOMMENDATIONS TO THE PAGE
-   -------------------------------------------------------------------------- */
-function renderRecommendations(results, selections) {
-  // Clear out whatever was there before (e.g. a previous search).
-  recommendationsList.innerHTML = '';
-
-  if (results.length === 0) {
-    recommendationsList.innerHTML = `
-      <p class="empty-message">
-        We couldn't find a strong match for that combination yet. Try selecting a few different tropes or moods.
-      </p>
-    `;
-    return;
-  }
-
-  results.forEach((result, index) => {
-    const rank = index + 1;
-    const { book, score } = result;
-
-    const card = document.createElement('article');
-    card.className = 'book-card';
-
-    card.innerHTML = `
-      <div class="book-rank">#${rank}</div>
-      <img
-        class="book-cover"
-        src="${book.cover}"
-        alt="Cover of ${book.title}"
-        onerror="this.style.display='none'"
-      >
-      <div class="book-info">
-        <h3 class="book-title">${book.title}</h3>
-        <p class="book-author">by ${book.author}</p>
-        <p class="match-score">${score}% Match</p>
-        <ul class="reason-list">
-          ${buildReasonList(selections, result)}
-        </ul>
-      </div>
-    `;
-
-    recommendationsList.appendChild(card);
-  });
-}
-
-/* --------------------------------------------------------------------------
-   10. RESET THE QUESTIONNAIRE
-   Unchecks every genre/trope/mood checkbox, so if the user scrolls back
-   up to try a new combination, they're starting from a blank slate.
-   -------------------------------------------------------------------------- */
-function resetSelections() {
-  const allCheckboxes = document.querySelectorAll(
-    'input[name="genre"], input[name="trope"], input[name="mood"]'
-  );
-  allCheckboxes.forEach((checkbox) => {
-    checkbox.checked = false;
-  });
-}
-
-/* --------------------------------------------------------------------------
-   11. HANDLE THE "FIND MY PAIR" SUBMIT BUTTON
-   -------------------------------------------------------------------------- */
-findPairButton.addEventListener('click', () => {
-  const selections = {
-    genres: getCheckedValues('genre'),
-    tropes: getCheckedValues('trope'),
-    moods: getCheckedValues('mood')
-  };
-
-  const madeAnySelection =
-    selections.genres.length > 0 || selections.tropes.length > 0 || selections.moods.length > 0;
-
-  if (!madeAnySelection) {
-    recommendationsList.innerHTML = `
-      <p class="empty-message">
-        Pick at least one genre, trope, or mood so we know what to look for.
-      </p>
-    `;
-    recommendationsSection.scrollIntoView({ behavior: 'smooth' });
-    return;
-  }
-
-  const topResults = getTopRecommendations(selections);
-  renderRecommendations(topResults, selections);
-  resetSelections();
-
-  recommendationsSection.scrollIntoView({ behavior: 'smooth' });
+document.getElementById('tropes-next-btn').addEventListener('click', () => showStage('mood'));
+document.getElementById('tropes-back-btn').addEventListener('click', () => {
+  document.querySelectorAll('input[name="genre"]').forEach((i) => (i.checked = false));
+  showStage('genre');
 });
+document.getElementById('mood-back-btn').addEventListener('click', () => showStage('tropes'));
+
+// ----- NEW: starting a search resets the queue for this search -----
+document.getElementById('find-pair-btn').addEventListener('click', async () => {
+  bookQueue = [];
+  await fetchMoreBooks();
+  showNextBatch();
+});
+
+function cleanAuthor(name) {
+  return (name || '').replace(/\s*\(Goodreads Author\)/g, '');
+}
+
+// ----- NEW: ask the backend for more books, skipping ones already seen -----
+async function fetchMoreBooks() {
+  const params = new URLSearchParams({ genre: selection.genreId, limit: BATCH_SIZE });
+  if (selection.tropeIds.length) params.set('tropes', selection.tropeIds.join(','));
+  if (selection.moodIds.length) params.set('moods', selection.moodIds.join(','));
+  if (dismissedIds.size) params.set('exclude', Array.from(dismissedIds).join(','));
+
+  try {
+    const results = await fetchJson('/api/books/recommendations?' + params);
+    bookQueue.push(...results);
+  } catch (error) {
+    console.error(error);
+    showError('Something went wrong finding your books. Please try again.');
+  }
+}
+
+// ----- NEW: take the next VISIBLE_COUNT books from the queue and render them -----
+async function showNextBatch() {
+  // If we're running low, top up the queue before showing anything
+  if (bookQueue.length < VISIBLE_COUNT) {
+    await fetchMoreBooks();
+  }
+
+  const toShow = bookQueue.splice(0, VISIBLE_COUNT);
+
+  if (toShow.length === 0) {
+    showError("You've seen every match for this combination. Try different tropes or moods.");
+    return;
+  }
+
+  renderRecommendations(toShow);
+}
+
+// ----- NEW: dismiss one card, save it, and pull in a replacement -----
+async function dismissBook(bookId, status, cardElement) {
+  dismissedIds.add(bookId);
+  saveDismissedIds(dismissedIds);
+
+  // If logged in, also save this choice to the backend so it's remembered on other devices
+  const auth = getAuth();
+  if (auth) {
+    try {
+      await fetch(API_BASE + '/api/me/book-status', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + auth.token
+        },
+        body: JSON.stringify({ bookId, status })
+      });
+    } catch (error) {
+      console.error('Could not save status to server:', error);
+      // Not fatal: the choice is still saved locally in dismissedIds
+    }
+  }
+
+  if (bookQueue.length < 1) {
+    await fetchMoreBooks();
+  }
+  const nextBook = bookQueue.shift();
+
+  if (nextBook) {
+    cardElement.replaceWith(buildCard(nextBook, dismissBook));
+  } else {
+    cardElement.remove();
+    if (recommendationsList.children.length === 0) {
+      showError("You've seen every match for this combination. Try different tropes or moods.");
+    }
+  }
+}
+
+// ----- NEW: card building split into its own function so a replacement card
+// can be built the same way as the initial ones -----
+function buildCard(book, onDismiss) {
+  const card = document.createElement('article');
+  card.className = 'book-card';
+
+  const rank = document.createElement('div');
+  rank.className = 'book-rank';
+  rank.textContent = book.matchPercent + '%';
+
+  const cover = document.createElement('img');
+  cover.className = 'book-cover';
+  cover.src = book.coverUrl || '';
+  cover.alt = 'Cover of ' + book.title;
+  cover.addEventListener('error', () => (cover.style.display = 'none'));
+
+  const info = document.createElement('div');
+  info.className = 'book-info';
+
+  const title = document.createElement('h3');
+  title.className = 'book-title';
+  title.textContent = book.title;
+
+  const author = document.createElement('p');
+  author.className = 'book-author';
+  author.textContent = 'by ' + cleanAuthor(book.author);
+
+  const score = document.createElement('p');
+  score.className = 'match-score';
+  score.textContent = book.matchPercent + '% Match';
+
+  const reasons = document.createElement('ul');
+  reasons.className = 'reason-list';
+  book.reasons.forEach((reason) => {
+    const li = document.createElement('li');
+    li.className = reason.matched ? 'reason-match' : 'reason-miss';
+    li.textContent = (reason.matched ? '✓ ' : '✗ ') + reason.name;
+    reasons.appendChild(li);
+  });
+
+  // NEW: the two dismiss buttons
+  const actions = document.createElement('div');
+  actions.className = 'card-actions';
+
+  const readBtn = document.createElement('button');
+  readBtn.className = 'card-action-btn';
+  readBtn.textContent = 'Already Read';
+  readBtn.addEventListener('click', () => onDismiss(book.id, 'read', card));
+
+  const skipBtn = document.createElement('button');
+  skipBtn.className = 'card-action-btn';
+  skipBtn.textContent = 'Not Interested';
+  skipBtn.addEventListener('click', () => onDismiss(book.id, 'not_interested', card));
+
+  actions.append(readBtn, skipBtn);
+  info.append(title, author, score, reasons, actions);
+  card.append(rank, cover, info);
+  return card;
+}
+
+function renderRecommendations(results) {
+  recommendationsList.innerHTML = '';
+  results.forEach((book) => {
+    recommendationsList.appendChild(buildCard(book, dismissBook));
+  });
+  recommendationsSection.scrollIntoView({ behavior: 'smooth' });
+}
+
+// ----- Logged-in state -----
+const AUTH_KEY = 'pageAndPair.auth'; // stores { token, email }
+
+function getAuth() {
+  try {
+    const raw = localStorage.getItem(AUTH_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (error) {
+    console.error('Could not read saved login:', error);
+    return null;
+  }
+}
+
+function setAuth(auth) {
+  localStorage.setItem(AUTH_KEY, JSON.stringify(auth));
+  updateLoginButton();
+}
+
+function clearAuth() {
+  localStorage.removeItem(AUTH_KEY);
+  updateLoginButton();
+}
+
+function updateLoginButton() {
+  const auth = getAuth();
+  const openLoginBtn = document.getElementById('open-login-btn');
+  const loginPrompt = document.querySelector('.login-prompt');
+  if (auth) {
+    loginPrompt.innerHTML = 'Logged in as ' + auth.email + ' · <button class="link-button" id="logout-btn">Log out</button>';
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      clearAuth();
+    });
+  } else {
+    loginPrompt.innerHTML = '<button class="link-button" id="open-login-btn">Log in</button> to save your progress';
+    document.getElementById('open-login-btn').addEventListener('click', () => {
+      setAuthMode('login');
+      openAuthModal();
+    });
+  }
+}
+
+// ----- Pull the user's saved statuses into dismissedIds after login -----
+async function syncSavedStatuses() {
+  const auth = getAuth();
+  if (!auth) return;
+  try {
+    const response = await fetch(API_BASE + '/api/me/book-status', {
+      headers: { Authorization: 'Bearer ' + auth.token }
+    });
+    if (!response.ok) throw new Error('Failed to load saved statuses');
+    const entries = await response.json();
+    entries.forEach((entry) => dismissedIds.add(entry.bookId));
+    saveDismissedIds(dismissedIds);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// ----- Form submit: register or login -----
+authForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  authError.hidden = true;
+  authSubmitBtn.disabled = true;
+
+  const email = authEmailInput.value.trim();
+  const password = authPasswordInput.value;
+  const endpoint = authMode === 'login' ? '/api/auth/login' : '/api/auth/register';
+
+  try {
+    const response = await fetch(API_BASE + endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      authError.textContent = data.error || 'Something went wrong. Please try again.';
+      authError.hidden = false;
+      return;
+    }
+
+    setAuth({ token: data.token, email: data.email });
+    closeAuthModal();
+    await syncSavedStatuses();
+  } catch (error) {
+    console.error(error);
+    authError.textContent = 'Could not reach the server. Please try again.';
+    authError.hidden = false;
+  } finally {
+    authSubmitBtn.disabled = false;
+  }
+});
+
+// Restore login state on page load
+updateLoginButton();
+if (getAuth()) syncSavedStatuses();
+
+loadGenres();
+loadMoods();
+
