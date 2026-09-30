@@ -143,27 +143,72 @@ async function loadGenres() {
   }
 }
 
-async function chooseGenre(genreId) {
-  selection.genreId = genreId;
-  selection.tropeIds = [];
-  tropeOptions.innerHTML = '';
+// async function chooseGenre(genreId) {
+//   selection.genreId = genreId;
+//   selection.tropeIds = [];
+//   tropeOptions.innerHTML = '';
+//   try {
+//     const tropes = await fetchJson('/api/genres/' + genreId + '/tropes');
+//     tropes.forEach((trope) => {
+//       tropeOptions.appendChild(
+//         makePill('checkbox', 'trope', trope, (input) => toggle(selection.tropeIds, trope.id, input.checked))
+//       );
+//     });
+//     showStage('tropes');
+//   } catch (error) {
+//     console.error(error);
+//     showError('Could not load tropes. Please try again.');
+//   }
+// }
+
+// async function loadMoods() {
+//   try {
+//     const moods = await fetchJson('/api/moods');
+//     moods.forEach((mood) => {
+//       moodOptions.appendChild(
+//         makePill('checkbox', 'mood', mood, (input) => toggle(selection.moodIds, mood.id, input.checked))
+//       );
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     moodOptions.innerHTML =
+//       '<p class="empty-message">Could not load moods. Please refresh and try again.</p>';
+//   }
+// }
+
+let genresLoaded = false;
+let moodsLoaded = false;
+
+function showWakingMessage() {
+  if (genresLoaded && moodsLoaded) return; // already done, don't show it
+  genreOptions.innerHTML = '<p class="empty-message">Waking up the server, this can take up to a minute the first time…</p>';
+}
+
+// Show the waking message if loading takes more than 2 seconds
+const wakingTimer = setTimeout(showWakingMessage, 2000);
+
+async function loadGenres() {
   try {
-    const tropes = await fetchJson('/api/genres/' + genreId + '/tropes');
-    tropes.forEach((trope) => {
-      tropeOptions.appendChild(
-        makePill('checkbox', 'trope', trope, (input) => toggle(selection.tropeIds, trope.id, input.checked))
+    const genres = await fetchJson('/api/genres');
+    genresLoaded = true;
+    clearTimeout(wakingTimer);
+    genreOptions.innerHTML = '';
+    genres.forEach((genre) => {
+      genreOptions.appendChild(
+        makePill('radio', 'genre', genre, () => chooseGenre(genre.id))
       );
     });
-    showStage('tropes');
   } catch (error) {
     console.error(error);
-    showError('Could not load tropes. Please try again.');
+    genreOptions.innerHTML =
+      '<p class="empty-message">Could not load genres. Please refresh and try again.</p>';
   }
 }
 
 async function loadMoods() {
   try {
     const moods = await fetchJson('/api/moods');
+    moodsLoaded = true;
     moods.forEach((mood) => {
       moodOptions.appendChild(
         makePill('checkbox', 'mood', mood, (input) => toggle(selection.moodIds, mood.id, input.checked))
