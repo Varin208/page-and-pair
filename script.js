@@ -63,6 +63,48 @@ authSwitchBtn.addEventListener('click', () => {
   setAuthMode(authMode === 'login' ? 'signup' : 'login');
 });
 
+// ----- Google Sign-In -----
+function handleGoogleCredential(response) {
+  // response.credential is the verified token Google gives us after the user approves
+  fetch(API_BASE + '/api/auth/google', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ credential: response.credential })
+  })
+    .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+    .then(({ ok, data }) => {
+      if (!ok) {
+        authError.textContent = data.error || 'Google sign-in failed. Please try again.';
+        authError.hidden = false;
+        return;
+      }
+      setAuth({ token: data.token, email: data.email });
+      closeAuthModal();
+      syncSavedStatuses();
+    })
+    .catch((error) => {
+      console.error('Google sign-in error:', error);
+      authError.textContent = 'Could not reach the server. Please try again.';
+      authError.hidden = false;
+    });
+}
+
+// Google's script loads asynchronously, so we wait until it's ready
+window.addEventListener('load', () => {
+  if (typeof google === 'undefined') {
+    console.error('Google Sign-In script did not load.');
+    return;
+  }
+  google.accounts.id.initialize({
+    client_id: '610256875698-bl55kt00rru2rkg96j4hdu7d08fl8iah.apps.googleusercontent.com',
+    callback: handleGoogleCredential
+  });
+  google.accounts.id.renderButton(
+    document.getElementById('google-signin-button'),
+    { theme: 'outline', size: 'large', width: 320 }
+  );
+});
+
 // ----- NEW: dismissed books, saved across reloads -----
 const DISMISSED_KEY = 'pageAndPair.dismissedBookIds';
 
