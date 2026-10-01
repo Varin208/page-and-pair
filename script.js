@@ -118,6 +118,8 @@ function loadDismissedIds() {
   }
 }
 
+
+
 function saveDismissedIds(idSet) {
   try {
     localStorage.setItem(DISMISSED_KEY, JSON.stringify(Array.from(idSet)));
@@ -127,6 +129,29 @@ function saveDismissedIds(idSet) {
 }
 
 let dismissedIds = loadDismissedIds();
+
+// ----- "To Read" list, saved separately so it can be viewed later -----
+const TO_READ_KEY = 'pageAndPair.toReadBookIds';
+
+function loadToReadIds() {
+  try {
+    const raw = localStorage.getItem(TO_READ_KEY);
+    return raw ? new Set(JSON.parse(raw)) : new Set();
+  } catch (error) {
+    console.error('Could not read saved to-read list:', error);
+    return new Set();
+  }
+}
+
+function saveToReadIds(idSet) {
+  try {
+    localStorage.setItem(TO_READ_KEY, JSON.stringify(Array.from(idSet)));
+  } catch (error) {
+    console.error('Could not save to-read list:', error);
+  }
+}
+
+let toReadIds = loadToReadIds();
 let bookQueue = []; // books fetched but not yet shown
 
 const stages = {
@@ -300,6 +325,11 @@ async function dismissBook(bookId, status, cardElement) {
   dismissedIds.add(bookId);
   saveDismissedIds(dismissedIds);
 
+  if (status === 'to_read') {
+    toReadIds.add(bookId);
+    saveToReadIds(toReadIds);
+  }
+
   // If logged in, also save this choice to the backend so it's remembered on other devices
   const auth = getAuth();
   if (auth) {
@@ -382,12 +412,18 @@ function buildCard(book, onDismiss) {
   readBtn.textContent = 'Already Read';
   readBtn.addEventListener('click', () => onDismiss(book.id, 'read', card));
 
+  const toReadBtn = document.createElement('button');
+  toReadBtn.className = 'card-action-btn';
+  toReadBtn.textContent = 'To Read';
+  toReadBtn.addEventListener('click', () => onDismiss(book.id, 'to_read', card));
+
   const skipBtn = document.createElement('button');
   skipBtn.className = 'card-action-btn';
   skipBtn.textContent = 'Not Interested';
   skipBtn.addEventListener('click', () => onDismiss(book.id, 'not_interested', card));
 
-  actions.append(readBtn, skipBtn);
+  actions.append(readBtn, toReadBtn, skipBtn);
+
   info.append(title, author, score, reasons, actions);
   card.append(rank, cover, info);
   return card;
@@ -501,4 +537,3 @@ if (getAuth()) syncSavedStatuses();
 
 loadGenres();
 loadMoods();
-
